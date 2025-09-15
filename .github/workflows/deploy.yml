@@ -2,7 +2,7 @@ name: Deploy Vite to GitHub Pages
 
 on:
   push:
-    branches: [ main ] # ou o branch que você usa
+    branches: [ main ]
 
 jobs:
   build:
@@ -25,5 +25,9 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GH_PAT }}
+          github_token: ${{ secrets.GH_PAT }}   # Use seu PAT
           publish_dir: ./dist
+          # Estas opções garantem que o branch gh-pages seja criado se não existir
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          force_orphan: true
